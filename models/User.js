@@ -19,6 +19,30 @@ const UserSchema = new mongoose.Schema({
     },
     image: {
         type: String
+    },
+    isTeacher: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    isStudent: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    isParent: {
+        type: Boolean,
+        required: true,
+        default: false
+    }, 
+    parentOf: {
+        type: [String]
+    },
+    childOf: {
+        type: [String]
+    },
+    courses: {
+        type: [String]
     }
 }, { timestamps: true } )
 

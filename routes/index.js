@@ -3,6 +3,8 @@ const express = require('express')
 const router = express.Router()
 const authController = require('../controllers/auth')
 
+// Refactor into login congroller
+
 // @ desc   Login/Landing Page
 // @ route  GET /
 router.get('/', authController.ensureGuest, (req, res) => {
@@ -12,10 +14,10 @@ router.get('/', authController.ensureGuest, (req, res) => {
 // @ desc   Logged in page
 // @ route  GET /loggedIn
 router.get('/loggedIn', authController.ensureAuth, async (req, res) => {
+    const user = req.user
+    console.log(user)
     try {
-        res.render('loggedIn.ejs', {
-            name: req.user.firstName || 'Logged Out User'
-        })
+        res.render('loggedIn.ejs', { user: user })
     } catch (err) {
         console.error(err)
     }

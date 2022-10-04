@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/../css/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('partials/header') -%>
+    <%# re-format inputs to table as objects in refactor %>
+    <div class="w-4/5 flex justify-center m-auto my-2"></div>
+        <p class="w-full m-auto my-2 text-lg"><%= courseInfo.courseName %> Section <%= courseInfo.courseName.slice(0,2).toUpperCase() %>-001</p>
+
+        <div class="overflow-x-auto justify-center">
+            <table class="table table-compact w-4/5">
+            <thead>
+                <tr>
+                <th></th> 
+                
+                <th>Student</th> 
+                <th>Overall Grade</th>
+                        <% for (let title = 0; title < grades[0][2].length; title++) { %>
+                            <th><%= grades[0][2][title][0] %></th>
+                        <% } %>
+                </tr>
+            </thead> 
+            <tbody>
+                <tr>
+                    <% for (let student = 0; student < grades.length; student++) { %>
+                        <th><%= student+1 %></th>
+                        <th><%= grades[student][1] %>, <%= grades[student][0] %></th>
+                        <th><%# overall grade here, implement functionality %> 95.00% (A)</th>
+                        <% for (let assignment = 0; assignment < grades[student][2].length; assignment++) { %>
+                            <th><%= grades[student][2][assignment][1] %> / <%= grades[student][2][assignment][2] %></th>
+                        <% } %>
+                    <% } %>
+                </tr>
+            </table>
+        </div>
+
+        <%- include('partials/footer') -%>
+
+    </div>
+</body>
+</html>

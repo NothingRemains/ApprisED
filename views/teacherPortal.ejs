@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/../css/main.css">
+    <title>ApprisED For Teachers</title>
+</head>
+<body>
+
+    <%- include('partials/header') -%>
+    <div class="w-1/2 flex flex-col justify-center m-auto my-2">
+        <p class="justify-center items-center m-auto my-2 text-xl">Welcome back, <%= user.firstName %>!</p>
+
+        <p class="justify-center items-center m-auto my-2 text-md">Choose which you'd like to access:</p>
+    
+        <p class="justify-center items-center m-auto my-2 text-lg">Individual Student Information</p>
+        <div class="collapse my-2">
+            <input type="checkbox" /> 
+            <div class="btn btn-primary w-full collapse-title text-xl font-medium m-auto">
+              See All Students
+            </div>
+            <div class="collapse-content"> 
+                <ul class="menu p-4 overflow-y-auto bg-base-100 text-base-content">
+                    <% for (let student = 0; student < uniqueStudents.length; student++) { %>
+                        <li><a class="btn bg-slate-800" href="/portal/student/<%= uniqueStudents[student]._id %>"><%= uniqueStudents[student].lastName %>, <%= uniqueStudents[student].firstName %></a></li>
+                    <% } %>
+                </ul>
+            </div>
+          </div>
+        
+          <p class="justify-center items-center m-auto my-2 text-lg">Class Information</p>
+          <div class="collapse my-2">
+            <input type="checkbox" /> 
+            <div class="btn btn-primary grid w-full collapse-title text-xl font-medium m-auto">
+              <p>See All Classes</p>
+            </div>
+            <div class="collapse-content"> 
+                <ul class="menu p-4 overflow-y-auto w-4/5 m-auto bg-base-100 text-base-content">
+                    <% for (let course = 0; course < courses.length; course++) { %>
+                        <li><a class="btn bg-slate-800" href="/portal/teacher/course/<%= courses[course][1] %>"><%= courses[course][0] %></a></li>
+                    <% } %>
+                </ul>
+            </div>
+          </div>
+    </div>
+
+    <%- include('partials/footer') -%>
+
+</body>
+</html>

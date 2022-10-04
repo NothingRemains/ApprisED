@@ -1,0 +1,18 @@
+<nav class="relative">
+    <div class="flex justify-around gap-24 items-center bg-slate-800">
+        <div class="pt-2">
+            <img src="/../assets/images/ApprisED.png" alt="">
+        </div>
+
+        <div class="flex items-center space-x-8 p-3">
+            <a href="" class="text-emerald-400">About ApprisED</a>
+            <a href="" class="text-emerald-400">Support</a>
+            <a href="" class="text-emerald-400">Careers</a>
+            <a href="/auth/logout" class="text-emerald-400">Log Out</a>
+
+            <a href="/loggedIn" class="p-3 px-6 pt-2 text-center bg-emerald-400 text-slate-800 rounded-lg"><%= (user ? `Welcome, ${user.firstName}` : 'Log In') %>! </a>
+        </div>
+
+        
+    </div>
+</nav>

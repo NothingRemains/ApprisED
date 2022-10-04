@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/../css/main.css">
+    <title>Student Portal</title>
+</head>
+<body>
+    <%- include('partials/header') -%>
+    <h1 class="flex w-1/2 justify-center mt-4 text-lg m-auto"><%= student[0].firstName %>'s Grade Summary</h1>
+    
+    <div class="flex flex-col w-1/3 m-auto justify-center">
+        <div class="divider"></div> 
+    </div>
+
+    <% for (let course = 0; course < grades.length; course++) { %>
+        <div class="flex stats stats-vertical bg-slate-800 lg:stats-horizontal shadow w-1/2 m-auto justify-center my-2">
+  
+            <div class="stat">
+              <div class="stat-title">Class</div>
+              <div class="stat-value"><%= grades[course].course %></div>
+            </div>
+            
+            <div class="stat">
+              <div class="stat-title">Overall Grade</div>
+              <div class="stat-value"><%= grades[course].percentage %></div>
+            </div>
+            
+            <div class="stat">
+              <div class="stat-title">Letter Grade</div>
+              <div class="stat-value"><%= grades[course].letterGrade %></div>
+            </div>
+            
+          </div>
+
+          <div class="flex flex-col w-1/3 m-auto justify-center">
+            <div class="divider"></div>
+        </div>
+
+        <h1 class="flex w-1/2 justify-center text-lg m-auto  my-4"><%= student[0].firstName %>'s Recent <%= grades[course].course %> Assignments</h1>
+        <div class="overflow-x-auto">
+          <table class="table w-4/5 m-auto justify-center">
+           <%# Table Head %>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Assignment</th>
+                <th>Type</th>
+                <th>Your Points</th>
+                <th>Max Points</th>
+                <th>Grade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (let assignment = 0; assignment < studentAssignments[course].length; assignment++) { %>
+                <%# Table Rows %>
+                <tr>
+                  <th><% assignment %></th>
+                  <td><%= studentAssignments[course][assignment].assignmentName %></td>
+                  <td><%= studentAssignments[course][assignment].assignmentCategory %></td>
+                  <td><%= studentAssignments[course][assignment].grades.points %></td>
+                  <td><%= studentAssignments[course][assignment].maxPoints %></td>
+                  <td><%= (studentAssignments[course][assignment].grades.points / studentAssignments[course][assignment].maxPoints * 100).toFixed(2) + "%"  %></td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="flex flex-col w-1/3 m-auto justify-center">
+          <div class="divider"></div> 
+      </div>
+
+    <% } %>
+    <%# Show student classes %>
+    <%# Show grade summary in every class w/ link to class grade %>
+    <%# absence info %>
+    <%# teacher contact info %>
+
+    <%- include('partials/footer') -%>
+</body>
+</html>

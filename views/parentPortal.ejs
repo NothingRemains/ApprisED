@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/../css/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('partials/header') -%>
+    
+        <div class="flex flex-col w-full m-auto justify-center">
+            <div class="w-1/2 m-auto justify-center">
+                <div class="grid w-4/5 m-auto justify-center my-2"><%= user.firstName %>, select which child's grade you'd like to view:</div>
+            <% for (let child = 0; child < children.length; child++) { %>
+                    <div class="divider w-4/5 m-auto justify-center my-2"></div> 
+                    <div class="grid h-16 m-auto w-4/5 card bg-slate-800 rounded-box place-items-center my-2">
+                        <a href="/portal/student/<%= children[child][0] %>"><%= children[child][2] %>, <%= children[child][1] %></a>
+                    </div>
+            <% } %>
+        </div>
+    <%# Show student classes for all students %>
+    <%# Show grade summary in every class w/ link to class grade %>
+    <%# absence info %>
+    <%# teacher contact info %>
+    
+    <%- include('partials/footer') -%>
+</body>
+</html>

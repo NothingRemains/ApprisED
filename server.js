@@ -8,7 +8,6 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const passport = require('passport')
 
-
 // Load config file
 dotenv.config({path: './config/.env'})
 
@@ -17,12 +16,18 @@ require('./config/passport')(passport)
 
 const app = express()
 
+// Use .ejs for templating
+app.set("view engine", "ejs")
+
 // Connect to MongoDB
 connectDB()
 
 //Body parser
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+
+// Set static folder
+app.use(express.static('public'))
 
 // Logging
 if (process.env.NODE_ENV === 'development') {
@@ -47,6 +52,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Routes
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
+app.use('/portal', require('./routes/portal'))
 
 // Start server 
 const PORT = process.env.PORT || 3600
